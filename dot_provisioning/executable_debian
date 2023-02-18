@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -ue
+
+sudo apt-get update
+sudo apt-get install -y \
+  curl \
+  fzf \
+  gcc \
+  git \
+  openssl \
+  wget \
+  vim
+
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source $HOME/.cargo/env
+cargo install \
+  git-delta \
+  sheldon
+
+git clone --depth 1 https://github.com/asdf-vm/asdf.git ~/.asdf
