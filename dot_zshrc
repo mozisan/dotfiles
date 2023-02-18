@@ -2,7 +2,7 @@
 [[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 
 # Zsh
-fpath+=$HOME/.zfunc
+fpath+="$HOME/.zfunc"
 autoload -Uz compinit && compinit
 
 # Sheldon
@@ -12,16 +12,17 @@ eval "$(sheldon source)"
 export PATH="$HOME/.moon/tools/moon/latest:$PATH"
 
 # asdf
-source $(brew --prefix asdf)/libexec/asdf.sh
-[ -f $HOME/.asdf/plugins/java/set-java-home.zsh ] && source $HOME/.asdf/plugins/java/set-java-home.zsh
+[ -x "$(command -v brew)" ] && source "$(brew --prefix asdf)/libexec/asdf.sh"
+[ -f "$HOME/.asdf/asdf.sh" ] && source "$HOME/.asdf/asdf.sh"
+[ -f "$HOME/.asdf/plugins/java/set-java-home.zsh" ] && source "$HOME/.asdf/plugins/java/set-java-home.zsh"
 
 # Bun
-export BUN_INSTALL=$HOME/.bun
+export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-[ -f $BUN_INSTALL/_bun ] && source $BUN_INSTALL/_bun # completions
+[ -f "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun" # completions
 
 # fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 # Prompt
 eval "$(starship init zsh)"
